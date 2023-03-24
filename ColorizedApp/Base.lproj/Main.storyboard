@@ -85,21 +85,21 @@
                                                 </constraints>
                                                 <color key="minimumTrackTintColor" systemColor="systemPinkColor"/>
                                                 <connections>
-                                                    <action selector="changeColorOfView:" destination="BYZ-38-t0r" eventType="valueChanged" id="9PL-DV-phs"/>
+                                                    <action selector="changeColorOfView" destination="BYZ-38-t0r" eventType="valueChanged" id="hF7-TI-9ab"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Umr-VR-A7h">
                                                 <rect key="frame" x="-2" y="43" width="304" height="20"/>
                                                 <color key="minimumTrackTintColor" systemColor="systemGreenColor"/>
                                                 <connections>
-                                                    <action selector="changeColorOfView:" destination="BYZ-38-t0r" eventType="valueChanged" id="G74-cM-Rmk"/>
+                                                    <action selector="changeColorOfView" destination="BYZ-38-t0r" eventType="valueChanged" id="k3z-ST-1lg"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="VhR-mJ-8AK">
                                                 <rect key="frame" x="-2" y="86" width="304" height="20.333333333333329"/>
                                                 <color key="minimumTrackTintColor" systemColor="systemBlueColor"/>
                                                 <connections>
-                                                    <action selector="changeColorOfView:" destination="BYZ-38-t0r" eventType="valueChanged" id="lne-s2-eza"/>
+                                                    <action selector="changeColorOfView" destination="BYZ-38-t0r" eventType="valueChanged" id="pPh-Mf-Pha"/>
                                                 </connections>
                                             </slider>
                                         </subviews>
@@ -121,14 +121,17 @@
                     </view>
                     <connections>
                         <outlet property="blueColorLabel" destination="ehU-qZ-iPu" id="Pjx-CZ-8BD"/>
-                        <outlet property="colorView" destination="GWN-dA-cQN" id="mG8-A4-nqT"/>
+                        <outlet property="blueSlider" destination="VhR-mJ-8AK" id="jIm-35-8jA"/>
+                        <outlet property="colorView" destination="GWN-dA-cQN" id="wFS-F8-Pxc"/>
                         <outlet property="greenColorLabel" destination="Cmy-lg-uKM" id="aE1-eA-fmT"/>
+                        <outlet property="greenSlider" destination="Umr-VR-A7h" id="kuw-cX-ezh"/>
                         <outlet property="redColorLabel" destination="5j1-B4-KTB" id="Thl-cE-NCX"/>
+                        <outlet property="redSlider" destination="XhX-2Q-sVr" id="pXP-Cf-8Zy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="333.48837209302326" y="-4.5064377682403434"/>
+            <point key="canvasLocation" x="829" y="330"/>
         </scene>
     </scenes>
     <resources>

@@ -14,28 +14,39 @@ final class ViewController: UIViewController {
     @IBOutlet private var greenColorLabel: UILabel!
     @IBOutlet private var blueColorLabel: UILabel!
     
+    @IBOutlet private var redSlider: UISlider!
+    @IBOutlet private var greenSlider: UISlider!
+    @IBOutlet private var blueSlider: UISlider!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         colorView.layer.cornerRadius = 10
+        
+        setColorValues(red: 0.05, green: 0.27, blue: 0.49)
     }
     
-    @IBAction private func changeColorOfView(_ sender: UISlider) {
-        let valueOfSlider = (round(sender.value * 100) / 100)
-  
-        if sender.minimumTrackTintColor == .systemPink {
-            redColorLabel.text = valueOfSlider.formatted()
-            colorView.backgroundColor = .systemRed
-            colorView.alpha = CGFloat(valueOfSlider)
-        } else if sender.minimumTrackTintColor == .systemGreen {
-            greenColorLabel.text = valueOfSlider.formatted()
-            colorView.backgroundColor = .systemGreen
-            colorView.alpha = CGFloat(valueOfSlider)
-        } else if sender.minimumTrackTintColor == .systemBlue {
-            blueColorLabel.text = valueOfSlider.formatted()
-            colorView.backgroundColor = .systemBlue
-            colorView.alpha = CGFloat(valueOfSlider)
-        }
+    @IBAction private func changeColorOfView() {
+        redColorLabel.text = (round(redSlider.value * 100) / 100).formatted()
+        greenColorLabel.text = (round(greenSlider.value * 100) / 100).formatted()
+        blueColorLabel.text = (round(blueSlider.value * 100) / 100).formatted()
+        
+        colorView.backgroundColor = UIColor(
+            red: CGFloat(redSlider.value),
+            green: CGFloat(greenSlider.value),
+            blue: CGFloat(blueSlider.value),
+            alpha: 1
+        )
+    }
+    
+    private func setColorValues(red: Float, green: Float, blue: Float) {
+        redColorLabel.text = red.formatted()
+        greenColorLabel.text = green.formatted()
+        blueColorLabel.text = blue.formatted()
+        
+        redSlider.value = red
+        greenSlider.value = green
+        blueSlider.value = blue
     }
 }
 
