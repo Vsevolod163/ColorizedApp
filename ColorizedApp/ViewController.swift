@@ -22,14 +22,24 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         
         colorView.layer.cornerRadius = 10
-        
-        setColorValues(red: 0.05, green: 0.27, blue: 0.49)
+        colorView.backgroundColor = UIColor(
+            red: 0.05,
+            green: 0.27,
+            blue: 0.49,
+            alpha: 1
+        )
+        setValueInColorLabels(red: 0.05, green: 0.27, blue: 0.49)
+        setValueInSliders(red: 0.05, green: 0.27, blue: 0.49)
     }
     
-    @IBAction private func changeColorOfView() {
-        redColorLabel.text = (round(redSlider.value * 100) / 100).formatted()
-        greenColorLabel.text = (round(greenSlider.value * 100) / 100).formatted()
-        blueColorLabel.text = (round(blueSlider.value * 100) / 100).formatted()
+    @IBAction private func changeColorOfView(_ sender: UISlider) {
+        if sender.minimumTrackTintColor == .systemPink {
+            redColorLabel.text = (round(redSlider.value * 100) / 100).formatted()
+        } else if sender.minimumTrackTintColor == .systemGreen {
+            greenColorLabel.text = (round(greenSlider.value * 100) / 100).formatted()
+        } else if sender.minimumTrackTintColor == .systemBlue {
+            blueColorLabel.text = (round(blueSlider.value * 100) / 100).formatted()
+        }
         
         colorView.backgroundColor = UIColor(
             red: CGFloat(redSlider.value),
@@ -39,11 +49,13 @@ final class ViewController: UIViewController {
         )
     }
     
-    private func setColorValues(red: Float, green: Float, blue: Float) {
+    private func setValueInColorLabels(red: Float, green: Float, blue: Float) {
         redColorLabel.text = red.formatted()
         greenColorLabel.text = green.formatted()
         blueColorLabel.text = blue.formatted()
-        
+    }
+    
+    private func setValueInSliders(red: Float, green: Float, blue: Float) {
         redSlider.value = red
         greenSlider.value = green
         blueSlider.value = blue
