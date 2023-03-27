@@ -78,7 +78,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="44f-7t-NLV">
                                         <rect key="frame" x="98" y="0.0" width="300" height="105.33333333333333"/>
                                         <subviews>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="XhX-2Q-sVr">
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.050000000000000003" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="XhX-2Q-sVr">
                                                 <rect key="frame" x="-2" y="0.0" width="304" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="XhX-2Q-sVr" secondAttribute="height" multiplier="299:19" id="eF2-61-WFc"/>
@@ -88,14 +88,14 @@
                                                     <action selector="changeColorOfView:" destination="BYZ-38-t0r" eventType="valueChanged" id="hpt-4x-Kgr"/>
                                                 </connections>
                                             </slider>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Umr-VR-A7h">
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.27000000000000002" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Umr-VR-A7h">
                                                 <rect key="frame" x="-2" y="43" width="304" height="20"/>
                                                 <color key="minimumTrackTintColor" systemColor="systemGreenColor"/>
                                                 <connections>
                                                     <action selector="changeColorOfView:" destination="BYZ-38-t0r" eventType="valueChanged" id="EKy-dJ-wOp"/>
                                                 </connections>
                                             </slider>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="VhR-mJ-8AK">
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.48999999999999999" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="VhR-mJ-8AK">
                                                 <rect key="frame" x="-2" y="86" width="304" height="20.333333333333329"/>
                                                 <color key="minimumTrackTintColor" systemColor="systemBlueColor"/>
                                                 <connections>
@@ -131,7 +131,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="834" y="216"/>
+            <point key="canvasLocation" x="1446.9767441860465" y="197.63948497854079"/>
         </scene>
     </scenes>
     <resources>
