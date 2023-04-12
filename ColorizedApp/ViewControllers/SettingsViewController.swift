@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ViewController: UIViewController {
+final class SettingsViewController: UIViewController {
 
     @IBOutlet private var colorView: UIView!
     
@@ -18,6 +18,8 @@ final class ViewController: UIViewController {
     @IBOutlet private var redSlider: UISlider!
     @IBOutlet private var greenSlider: UISlider!
     @IBOutlet private var blueSlider: UISlider!
+    
+    var viewColor: UIColor!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,5 +55,10 @@ final class ViewController: UIViewController {
     private func string(from slider: UISlider) -> String {
         String(format: "%.2f", slider.value)
     }
+    
+    @IBAction func doneButtonPressed() {
+        dismiss(animated: true)
+    }
+    
 }
 
