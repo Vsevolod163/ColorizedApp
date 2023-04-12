@@ -8,10 +8,9 @@
 import UIKit
 
 final class StartViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -19,4 +18,5 @@ final class StartViewController: UIViewController {
         
         settingsVC.viewColor = view.backgroundColor
     }
+    
 }

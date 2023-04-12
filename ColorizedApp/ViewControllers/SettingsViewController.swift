@@ -24,7 +24,12 @@ final class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         colorView.layer.cornerRadius = 10
-        setColor()
+        
+        colorView.backgroundColor = viewColor
+        
+        redSlider.value = Float(getRGBFromView().red)
+        greenSlider.value = Float(getRGBFromView().green)
+        blueSlider.value = Float(getRGBFromView().blue)
         
         redColorLabel.text = string(from: redSlider)
         greenColorLabel.text = string(from: greenSlider)
@@ -41,6 +46,17 @@ final class SettingsViewController: UIViewController {
         default:
             blueColorLabel.text = string(from: blueSlider)
         }
+    }
+    
+    private func getRGBFromView() -> (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+        var red: CGFloat = 0.0
+        var green: CGFloat = 0.0
+        var blue: CGFloat = 0.0
+        var alpha: CGFloat = 0.0
+        
+        viewColor?.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        
+        return (red, green, blue, alpha)
     }
     
     private func setColor() {
