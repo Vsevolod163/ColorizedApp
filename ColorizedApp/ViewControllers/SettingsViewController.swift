@@ -21,8 +21,11 @@ final class SettingsViewController: UIViewController {
     
     var viewColor: UIColor!
     
+    unowned var delegate: SettingsViewControllerDelegate!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
         colorView.layer.cornerRadius = 10
         
         colorView.backgroundColor = viewColor
@@ -73,6 +76,10 @@ final class SettingsViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed() {
+        if let color = colorView.backgroundColor {
+            delegate.setColor(viewColor: color)
+        }
+        
         dismiss(animated: true)
     }
     
