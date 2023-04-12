@@ -176,16 +176,16 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="blueColorLabel" destination="ehU-qZ-iPu" id="Pjx-CZ-8BD"/>
                         <outlet property="colorView" destination="GWN-dA-cQN" id="wFS-F8-Pxc"/>
-                        <outlet property="greenColorLabel" destination="Cmy-lg-uKM" id="aE1-eA-fmT"/>
-                        <outlet property="redColorLabel" destination="5j1-B4-KTB" id="Thl-cE-NCX"/>
                         <outletCollection property="slidersTextFields" destination="PtY-6X-fN1" collectionClass="NSMutableArray" id="KbZ-Yu-bLa"/>
                         <outletCollection property="slidersTextFields" destination="0Yj-Lu-OEd" collectionClass="NSMutableArray" id="e7z-5q-otl"/>
                         <outletCollection property="slidersTextFields" destination="hZM-gE-14x" collectionClass="NSMutableArray" id="YF9-jO-Jyv"/>
                         <outletCollection property="sliders" destination="XhX-2Q-sVr" collectionClass="NSMutableArray" id="GqO-NR-Djf"/>
                         <outletCollection property="sliders" destination="Umr-VR-A7h" collectionClass="NSMutableArray" id="ULF-Bq-of7"/>
                         <outletCollection property="sliders" destination="VhR-mJ-8AK" collectionClass="NSMutableArray" id="wwe-dx-yWJ"/>
+                        <outletCollection property="colorLabels" destination="5j1-B4-KTB" collectionClass="NSMutableArray" id="Fg5-km-rRF"/>
+                        <outletCollection property="colorLabels" destination="Cmy-lg-uKM" collectionClass="NSMutableArray" id="tuH-vh-dcY"/>
+                        <outletCollection property="colorLabels" destination="ehU-qZ-iPu" collectionClass="NSMutableArray" id="AjC-58-zOT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

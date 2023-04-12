@@ -11,9 +11,7 @@ final class SettingsViewController: UIViewController {
 
     @IBOutlet private var colorView: UIView!
     
-    @IBOutlet private var redColorLabel: UILabel!
-    @IBOutlet private var greenColorLabel: UILabel!
-    @IBOutlet private var blueColorLabel: UILabel!
+    @IBOutlet private var colorLabels: [UILabel]!
     
     @IBOutlet private var sliders: [UISlider]!
     
@@ -62,13 +60,13 @@ final class SettingsViewController: UIViewController {
         setColor()
         switch sender.tag {
         case 0:
-            redColorLabel.text = string(from: sliders[0])
+            colorLabels[0].text = string(from: sliders[0])
             slidersTextFields[0].text = string(from: sliders[0])
         case 1:
-            greenColorLabel.text = string(from: sliders[1])
+            colorLabels[1].text = string(from: sliders[1])
             slidersTextFields[1].text = string(from: sliders[1])
         default:
-            blueColorLabel.text = string(from: sliders[2])
+            colorLabels[2].text = string(from: sliders[2])
             slidersTextFields[2].text = string(from: sliders[2])
         }
     }
@@ -102,9 +100,9 @@ final class SettingsViewController: UIViewController {
     }
     
     private func setValuesToColorLabels() {
-        redColorLabel.text = string(from: sliders[0])
-        greenColorLabel.text = string(from: sliders[1])
-        blueColorLabel.text = string(from: sliders[2])
+        for (colorLabel, slider) in zip(colorLabels, sliders) {
+            colorLabel.text = string(from: slider)
+        }
     }
     
     private func setValuesToTF() {
