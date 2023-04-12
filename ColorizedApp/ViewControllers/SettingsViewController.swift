@@ -133,5 +133,13 @@ extension SettingsViewController: UITextFieldDelegate {
         setValuesToColorLabels()
     }
     
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        for sliderTextField in [redSliderTF, greenSliderTF, blueSliderTF] {
+            if textField == sliderTextField {
+                textFieldDidEndEditing(textField)
+            }
+        }
+        
+        return true
+    }
 }
