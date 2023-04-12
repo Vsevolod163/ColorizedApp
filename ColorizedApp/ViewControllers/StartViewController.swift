@@ -23,7 +23,6 @@ final class StartViewController: UIViewController {
         settingsVC.viewColor = view.backgroundColor
         settingsVC.delegate = self
     }
-    
 }
 
 // MARK: - SettingsViewControllerDeligate
