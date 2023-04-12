@@ -9,6 +9,7 @@ import UIKit
 
 final class SettingsViewController: UIViewController {
 
+    // MARK: - Properties
     @IBOutlet private var colorView: UIView!
     
     @IBOutlet private var colorLabels: [UILabel]!
@@ -21,10 +22,11 @@ final class SettingsViewController: UIViewController {
     
     unowned var delegate: SettingsViewControllerDelegate!
     
+    // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        addDoneToKeyboard(textFields: slidersTextFields)
+        addDoneButtonToToolBar(textFields: slidersTextFields)
         
         for textField in slidersTextFields {
             textField.delegate = self
@@ -42,6 +44,7 @@ final class SettingsViewController: UIViewController {
         setValuesToTF()
     }
     
+    // MARK: - touchesBegan
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
@@ -56,6 +59,7 @@ final class SettingsViewController: UIViewController {
         }
     }
     
+    // MARK: - IB Actions
     @IBAction private func changeColorOfView(_ sender: UISlider) {
         setColor()
         switch sender.tag {
@@ -79,6 +83,21 @@ final class SettingsViewController: UIViewController {
         dismiss(animated: true)
     }
     
+    @objc private func addActionToDoneButton() {
+        for textField in slidersTextFields {
+            guard let newValue = textField.text else { return }
+            guard let numberValue = Float(newValue), (0...1).contains(numberValue) else {
+                showAlert(textField: textField)
+                return
+            }
+            
+            setValuesOfSlidersWith(textField: textField, numberValue: numberValue)
+            
+            textField.resignFirstResponder()
+        }
+    }
+    
+    // MARK: - Private funcs
     private func getRGBFromView() -> [CGFloat] {
         var red: CGFloat = 0.0
         var green: CGFloat = 0.0
@@ -114,49 +133,8 @@ final class SettingsViewController: UIViewController {
     private func string(from slider: UISlider) -> String {
         String(format: "%.2f", slider.value)
     }
-}
-
-extension SettingsViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let newValue = textField.text else { return }
-        guard let numberValue = Float(newValue), (0...1).contains(numberValue) else {
-            showAlert(textField: textField)
-            return
-        }
-        
-        setValuesOfSlidersWith(textField: textField, numberValue: numberValue)
-    }
     
-    @objc private func addActionToDoneButton() {
-        for textField in slidersTextFields {
-            guard let newValue = textField.text else { return }
-            guard let numberValue = Float(newValue), (0...1).contains(numberValue) else {
-                showAlert(textField: textField)
-                return
-            }
-            
-            setValuesOfSlidersWith(textField: textField, numberValue: numberValue)
-            
-            textField.resignFirstResponder()
-        }
-    }
-    
-    private func setValuesOfSlidersWith(textField: UITextField, numberValue: Float) {
-        textField.text = String(format: "%.2f", numberValue)
-        
-        if textField.tag == 0 {
-            sliders[0].setValue(numberValue, animated: true)
-        } else if textField.tag == 1 {
-            sliders[1].setValue(numberValue, animated: true)
-        } else if textField.tag == 2 {
-            sliders[2].setValue(numberValue, animated: true)
-        }
-        
-        setColor()
-        setValuesToColorLabels()
-    }
-    
-    private func addDoneToKeyboard(textFields: [UITextField]) {
+    private func addDoneButtonToToolBar(textFields: [UITextField]) {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
@@ -177,6 +155,34 @@ extension SettingsViewController: UITextFieldDelegate {
         for textField in textFields {
             textField.inputAccessoryView = toolbar
         }
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension SettingsViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let newValue = textField.text else { return }
+        guard let numberValue = Float(newValue), (0...1).contains(numberValue) else {
+            showAlert(textField: textField)
+            return
+        }
+        
+        setValuesOfSlidersWith(textField: textField, numberValue: numberValue)
+    }
+    
+    private func setValuesOfSlidersWith(textField: UITextField, numberValue: Float) {
+        textField.text = String(format: "%.2f", numberValue)
+        
+        if textField.tag == 0 {
+            sliders[0].setValue(numberValue, animated: true)
+        } else if textField.tag == 1 {
+            sliders[1].setValue(numberValue, animated: true)
+        } else if textField.tag == 2 {
+            sliders[2].setValue(numberValue, animated: true)
+        }
+        
+        setColor()
+        setValuesToColorLabels()
     }
     
     private func showAlert(textField: UITextField) {
