@@ -33,7 +33,6 @@ final class SettingsViewController: UIViewController {
         }
         
         colorView.layer.cornerRadius = 10
-        
         colorView.backgroundColor = viewColor
         
         for (slider, color) in zip(sliders, getRGBFromView()) {
@@ -50,12 +49,12 @@ final class SettingsViewController: UIViewController {
         view.endEditing(true)
         for textField in slidersTextFields {
             guard let newValue = textField.text else { return }
-            guard let numberValue = Float(newValue), (0...1).contains(numberValue), newValue.count <= 4 else {
+            guard let numberValue = Float(newValue), (0...1).contains(numberValue) else {
                 showAlert(textField: textField)
                 return
             }
             
-            checkTagsOfTextFields(textField: textField, numberValue: numberValue)
+            setValuesOfSlidersWith(textField: textField, numberValue: numberValue)
         }
     }
     
@@ -74,7 +73,7 @@ final class SettingsViewController: UIViewController {
         }
     }
     
-    @IBAction func doneButtonPressed() {
+    @IBAction private func doneButtonPressed() {
         if let color = colorView.backgroundColor {
             delegate.setColor(viewColor: color)
         }
@@ -117,35 +116,36 @@ final class SettingsViewController: UIViewController {
     private func string(from slider: UISlider) -> String {
         String(format: "%.2f", slider.value)
     }
-    
 }
 
 extension SettingsViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let newValue = textField.text else { return }
-        guard let numberValue = Float(newValue), (0...1).contains(numberValue), newValue.count <= 4 else {
+        guard let numberValue = Float(newValue), (0...1).contains(numberValue) else {
             showAlert(textField: textField)
             return
         }
         
-        checkTagsOfTextFields(textField: textField, numberValue: numberValue)
+        setValuesOfSlidersWith(textField: textField, numberValue: numberValue)
     }
     
     @objc private func addActionToDoneButton() {
         for textField in slidersTextFields {
             guard let newValue = textField.text else { return }
-            guard let numberValue = Float(newValue), (0...1).contains(numberValue), newValue.count <= 4 else {
+            guard let numberValue = Float(newValue), (0...1).contains(numberValue) else {
                 showAlert(textField: textField)
                 return
             }
             
-            checkTagsOfTextFields(textField: textField, numberValue: numberValue)
+            setValuesOfSlidersWith(textField: textField, numberValue: numberValue)
             
             textField.resignFirstResponder()
         }
     }
     
-    private func checkTagsOfTextFields(textField: UITextField, numberValue: Float) {
+    private func setValuesOfSlidersWith(textField: UITextField, numberValue: Float) {
+        textField.text = String(format: "%.2f", numberValue)
+        
         if textField.tag == 0 {
             sliders[0].setValue(numberValue, animated: true)
         } else if textField.tag == 1 {
@@ -162,8 +162,19 @@ extension SettingsViewController: UITextFieldDelegate {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addActionToDoneButton))
-        toolbar.items = [UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), doneButton]
+        let doneButton = UIBarButtonItem(
+            barButtonSystemItem: .done,
+            target: self,
+            action: #selector(addActionToDoneButton)
+        )
+        toolbar.items = [
+            UIBarButtonItem(
+                barButtonSystemItem: .flexibleSpace,
+                target: nil,
+                action: nil
+            ),
+            doneButton
+        ]
         
         for textField in textFields {
             textField.inputAccessoryView = toolbar
@@ -173,7 +184,7 @@ extension SettingsViewController: UITextFieldDelegate {
     private func showAlert(textField: UITextField) {
         let alert = UIAlertController(
             title: "Invalid format",
-            message: "Please, enter value from 0 to 1",
+            message: "Please, enter values from 0 to 1",
             preferredStyle: .alert
         )
         
