@@ -98,7 +98,7 @@ extension SettingsViewController {
         colorSliders.forEach { slider in
             switch slider {
             case redSlider: redSlider.value = Float(ciColor.red)
-            case redSlider: greenSlider.value = Float(ciColor.green)
+            case greenSlider: greenSlider.value = Float(ciColor.green)
             default: blueSlider.value = Float(ciColor.blue)
             }
         }
