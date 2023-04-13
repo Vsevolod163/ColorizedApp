@@ -8,10 +8,10 @@
 import UIKit
 
 final class SettingsViewController: UIViewController {
-
+    
     // MARK: - IB Outlets
     @IBOutlet private var colorView: UIView!
- 
+    
     @IBOutlet var redLabel: UILabel!
     @IBOutlet var greenLabel: UILabel!
     @IBOutlet var blueLabel: UILabel!
@@ -28,7 +28,7 @@ final class SettingsViewController: UIViewController {
     unowned var delegate: SettingsViewControllerDelegate!
     var viewColor: UIColor!
     
-    // MARK: - viewDidLoad
+    // MARK: - View Life Circle
     override func viewDidLoad() {
         super.viewDidLoad()
         colorView.layer.cornerRadius = 10
@@ -49,6 +49,7 @@ final class SettingsViewController: UIViewController {
         view.endEditing(true)
     }
     
+    // MARK: - IB Actions
     @IBAction func rgbSlider(_ sender: UISlider) {
         switch sender {
         case redSlider:
@@ -61,11 +62,18 @@ final class SettingsViewController: UIViewController {
             setValue(for: blueLabel)
             setValue(for: blueTextField)
         }
+        
+        setColor()
     }
     
-    
-    
-    
+    @IBAction func doneButtonPressed() {
+        delegate.setColor(colorView.backgroundColor ?? .white)
+        dismiss(animated: true)
+    }
+}
+ 
+// MARK: - Private Methods
+extension SettingsViewController {
     private func setColor() {
         colorView.backgroundColor = UIColor(
             red: CGFloat(redSlider.value),
@@ -110,80 +118,19 @@ final class SettingsViewController: UIViewController {
         String(format: "%.2f", slider.value)
     }
     
-    
-    
-    
-    @IBAction private func doneButtonPressed() {
-        if let color = colorView.backgroundColor {
-            delegate.setColor(color)
-        }
-        
-        dismiss(animated: true)
-    }
-    
-    @objc private func addActionToDoneButton() {
-        for textField in slidersTextFields {
-            guard let newValue = textField.text else { return }
-            guard let numberValue = Float(newValue), (0...1).contains(numberValue) else {
-                showAlert(textField: textField)
-                return
-            }
-            
-            setValuesOfSlidersWith(textField: textField, numberValue: numberValue)
-            
-            textField.resignFirstResponder()
-        }
-    }
-    
-    // MARK: - Private funcs
-    private func getRGBFromView() -> [CGFloat] {
-        var red: CGFloat = 0.0
-        var green: CGFloat = 0.0
-        var blue: CGFloat = 0.0
-        var alpha: CGFloat = 0.0
-        
-        viewColor?.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        
-        return [red, green, blue]
-    }
-    
-
-    
-    private func setValuesToColorLabels() {
-        for (colorLabel, slider) in zip(colorLabels, sliders) {
-            colorLabel.text = string(from: slider)
-        }
-    }
-    
-    private func setValuesToTF() {
-        for (textField, slider) in zip(slidersTextFields, sliders) {
-            textField.text = string(from: slider)
-        }
-    }
-
-
-    
-    private func addDoneButtonToToolBar(textFields: [UITextField]) {
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(
-            barButtonSystemItem: .done,
-            target: self,
-            action: #selector(addActionToDoneButton)
+    private func showAlert(withTitle title: String, andMessage message: String, textField: UITextField) {
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
         )
-        toolbar.items = [
-            UIBarButtonItem(
-                barButtonSystemItem: .flexibleSpace,
-                target: nil,
-                action: nil
-            ),
-            doneButton
-        ]
         
-        for textField in textFields {
-            textField.inputAccessoryView = toolbar
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            textField.text = "0.50"
+            textField.becomeFirstResponder()
         }
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
 }
 
@@ -199,34 +146,24 @@ extension SettingsViewController: UITextFieldDelegate {
         setValuesOfSlidersWith(textField: textField, numberValue: numberValue)
     }
     
-    private func setValuesOfSlidersWith(textField: UITextField, numberValue: Float) {
-        textField.text = String(format: "%.2f", numberValue)
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        guard textField != redTextField else { return }
+        let keyboardToolbar = UIToolbar()
+        keyboardToolbar.sizeToFit()
+        textField.inputAccessoryView = keyboardToolbar
         
-        if textField.tag == 0 {
-            sliders[0].setValue(numberValue, animated: true)
-        } else if textField.tag == 1 {
-            sliders[1].setValue(numberValue, animated: true)
-        } else if textField.tag == 2 {
-            sliders[2].setValue(numberValue, animated: true)
-        }
-        
-        setColor()
-        setValuesToColorLabels()
-    }
-    
-    private func showAlert(textField: UITextField) {
-        let alert = UIAlertController(
-            title: "Invalid format",
-            message: "Please, enter values from 0 to 1",
-            preferredStyle: .alert
+        let doneButton = UIBarButtonItem(
+            barButtonSystemItem: .done,
+            target: nil,
+            action: #selector(resignFirstResponder)
         )
         
-        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            textField.text = ""
-            textField.becomeFirstResponder()
-        }
-        alert.addAction(okAction)
+        let flexBarButton = UIBarButtonItem(
+            barButtonSystemItem: .flexibleSpace,
+            target: nil,
+            action: nil
+        )
         
-        present(alert, animated: true)
+        keyboardToolbar.items = [flexBarButton, doneButton]
     }
 }
