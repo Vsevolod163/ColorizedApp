@@ -176,16 +176,16 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="blueLabel" destination="ehU-qZ-iPu" id="z9I-wL-fS8"/>
+                        <outlet property="blueSlider" destination="VhR-mJ-8AK" id="Ra3-Sb-0UZ"/>
+                        <outlet property="blueTextField" destination="hZM-gE-14x" id="6kU-YY-zDA"/>
                         <outlet property="colorView" destination="GWN-dA-cQN" id="wFS-F8-Pxc"/>
-                        <outletCollection property="slidersTextFields" destination="PtY-6X-fN1" collectionClass="NSMutableArray" id="KbZ-Yu-bLa"/>
-                        <outletCollection property="slidersTextFields" destination="0Yj-Lu-OEd" collectionClass="NSMutableArray" id="e7z-5q-otl"/>
-                        <outletCollection property="slidersTextFields" destination="hZM-gE-14x" collectionClass="NSMutableArray" id="YF9-jO-Jyv"/>
-                        <outletCollection property="sliders" destination="XhX-2Q-sVr" collectionClass="NSMutableArray" id="GqO-NR-Djf"/>
-                        <outletCollection property="sliders" destination="Umr-VR-A7h" collectionClass="NSMutableArray" id="ULF-Bq-of7"/>
-                        <outletCollection property="sliders" destination="VhR-mJ-8AK" collectionClass="NSMutableArray" id="wwe-dx-yWJ"/>
-                        <outletCollection property="colorLabels" destination="5j1-B4-KTB" collectionClass="NSMutableArray" id="Fg5-km-rRF"/>
-                        <outletCollection property="colorLabels" destination="Cmy-lg-uKM" collectionClass="NSMutableArray" id="tuH-vh-dcY"/>
-                        <outletCollection property="colorLabels" destination="ehU-qZ-iPu" collectionClass="NSMutableArray" id="AjC-58-zOT"/>
+                        <outlet property="greenLabel" destination="Cmy-lg-uKM" id="Uqe-c2-OaT"/>
+                        <outlet property="greenSlider" destination="Umr-VR-A7h" id="9gE-nf-kY7"/>
+                        <outlet property="greenTextField" destination="0Yj-Lu-OEd" id="KLA-eF-er5"/>
+                        <outlet property="redLabel" destination="5j1-B4-KTB" id="nJQ-ml-BBs"/>
+                        <outlet property="redSlider" destination="XhX-2Q-sVr" id="7Mb-pt-FyH"/>
+                        <outlet property="redTextField" destination="PtY-6X-fN1" id="h3f-M5-kzJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -198,7 +198,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SG0-2v-mI8" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2n9-sH-HbX">
-                        <rect key="frame" x="0.0" y="20" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

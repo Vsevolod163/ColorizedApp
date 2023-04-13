@@ -9,14 +9,23 @@ import UIKit
 
 final class SettingsViewController: UIViewController {
 
-    // MARK: - Properties
+    // MARK: - IB Outlets
     @IBOutlet private var colorView: UIView!
-    @IBOutlet private var colorLabels: [UILabel]!
-    @IBOutlet private var sliders: [UISlider]!
-    @IBOutlet private var slidersTextFields: [UITextField]!
+ 
+    @IBOutlet var redLabel: UILabel!
+    @IBOutlet var greenLabel: UILabel!
+    @IBOutlet var blueLabel: UILabel!
     
+    @IBOutlet var redSlider: UISlider!
+    @IBOutlet var greenSlider: UISlider!
+    @IBOutlet var blueSlider: UISlider!
+    
+    @IBOutlet var redTextField: UITextField!
+    @IBOutlet var greenTextField: UITextField!
+    @IBOutlet var blueTextField: UITextField!
+    
+    // MARK: - Public Properties
     var viewColor: UIColor!
-    
     unowned var delegate: SettingsViewControllerDelegate!
     
     // MARK: - viewDidLoad
