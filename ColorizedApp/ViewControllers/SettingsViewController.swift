@@ -11,12 +11,9 @@ final class SettingsViewController: UIViewController {
 
     // MARK: - Properties
     @IBOutlet private var colorView: UIView!
-    
     @IBOutlet private var colorLabels: [UILabel]!
-    
     @IBOutlet private var sliders: [UISlider]!
-    
-    @IBOutlet var slidersTextFields: [UITextField]!
+    @IBOutlet private var slidersTextFields: [UITextField]!
     
     var viewColor: UIColor!
     
