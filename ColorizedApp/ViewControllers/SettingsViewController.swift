@@ -74,7 +74,7 @@ final class SettingsViewController: UIViewController {
     
     @IBAction private func doneButtonPressed() {
         if let color = colorView.backgroundColor {
-            delegate.setColor(viewColor: color)
+            delegate.setColor(color)
         }
         
         dismiss(animated: true)
