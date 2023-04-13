@@ -105,7 +105,6 @@
                                                 <rect key="frame" x="-2" y="0.0" width="138" height="31"/>
                                                 <color key="minimumTrackTintColor" systemColor="systemPinkColor"/>
                                                 <connections>
-                                                    <action selector="changeColorOfView:" destination="BYZ-38-t0r" eventType="valueChanged" id="hpt-4x-Kgr"/>
                                                     <action selector="rgbSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="BFu-Ma-FIQ"/>
                                                 </connections>
                                             </slider>
@@ -113,7 +112,6 @@
                                                 <rect key="frame" x="-2" y="42" width="138" height="31"/>
                                                 <color key="minimumTrackTintColor" systemColor="systemGreenColor"/>
                                                 <connections>
-                                                    <action selector="changeColorOfView:" destination="BYZ-38-t0r" eventType="valueChanged" id="EKy-dJ-wOp"/>
                                                     <action selector="rgbSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="8Rf-54-qHx"/>
                                                 </connections>
                                             </slider>
@@ -121,7 +119,6 @@
                                                 <rect key="frame" x="-2" y="84" width="138" height="31"/>
                                                 <color key="minimumTrackTintColor" systemColor="systemBlueColor"/>
                                                 <connections>
-                                                    <action selector="changeColorOfView:" destination="BYZ-38-t0r" eventType="valueChanged" id="IFr-ij-XdT"/>
                                                     <action selector="rgbSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="MV9-Yb-UQ0"/>
                                                 </connections>
                                             </slider>

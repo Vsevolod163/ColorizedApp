@@ -118,7 +118,7 @@ extension SettingsViewController {
         String(format: "%.2f", slider.value)
     }
     
-    private func showAlert(withTitle title: String, andMessage message: String, textField: UITextField) {
+    private func showAlert(withTitle title: String, andMessage message: String, textField: UITextField? = nil) {
         let alert = UIAlertController(
             title: title,
             message: message,
@@ -126,8 +126,8 @@ extension SettingsViewController {
         )
         
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            textField.text = "0.50"
-            textField.becomeFirstResponder()
+            textField?.text = "0.50"
+            textField?.becomeFirstResponder()
         }
         alert.addAction(okAction)
         present(alert, animated: true)
@@ -136,25 +136,53 @@ extension SettingsViewController {
 
 // MARK: - UITextFieldDelegate
 extension SettingsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let newValue = textField.text else { return }
-        guard let numberValue = Float(newValue), (0...1).contains(numberValue) else {
-            showAlert(textField: textField)
+        guard let text = textField.text else {
+            showAlert(
+                withTitle: "Wrong format!",
+                andMessage: "Please enter correct value"
+            )
+            
             return
         }
         
-        setValuesOfSlidersWith(textField: textField, numberValue: numberValue)
+        guard let currentValue = Float(text), (0...1).contains(currentValue) else {
+            showAlert(
+                withTitle: "Wrong format",
+                andMessage: "Please enter correct value",
+                textField: textField
+            )
+            
+            return
+        }
+        
+        switch textField {
+        case redTextField:
+            redSlider.setValue(currentValue, animated: true)
+            setValue(for: redLabel)
+        case greenTextField:
+            greenSlider.setValue(currentValue, animated: true)
+            setValue(for: greenLabel)
+        default:
+            blueSlider.setValue(currentValue, animated: true)
+            setValue(for: blueLabel)
+        }
+        
+        setColor()
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        guard textField != redTextField else { return }
         let keyboardToolbar = UIToolbar()
         keyboardToolbar.sizeToFit()
         textField.inputAccessoryView = keyboardToolbar
         
         let doneButton = UIBarButtonItem(
             barButtonSystemItem: .done,
-            target: nil,
+            target: textField,
             action: #selector(resignFirstResponder)
         )
         
